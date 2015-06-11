@@ -9,6 +9,7 @@ node_js:
   - "0.12"
 after_script:
   - npm run coveralls
+  - git config --global alias.co checkout
   - ./publish_docs.sh
 notifications:
   email:
