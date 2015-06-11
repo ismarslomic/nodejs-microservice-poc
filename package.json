@@ -1,0 +1,54 @@
+{
+  "name": "nodejs-microservice-poc",
+  "description": "Microservice PoC running at Nodejs inside Docker",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ismarslomic/nodejs-microservice-poc",
+  "bugs": "https://github.com/ismarslomic/nodejs-microservice-poc/issues",
+  "license": "MIT",
+  "main": "src/nodejs-microservice-poc.js",
+  "author": {
+    "name": "Ismar Slomic",
+    "email": "ismar@slomic.no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ismarslomic/nodejs-microservice-poc"
+  },
+  "keywords":[
+    "nodejs-microservice-poc",
+    "nodejs",
+    "restify",
+    "docker",
+    "microservice"
+  ],
+  "dependencies": {
+    "lodash": "3.9.3",
+    "q": "1.4.1",
+    "debug": "2.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-util": "^3.0.1",
+    "gulp-bump": "^0.3.0",
+    "gulp-jscs": "^1.6.0",
+    "gulp-jshint": "^1.9.4",
+    "gulp-mocha": "^2.0.0",
+    "gulp-istanbul": "^0.8.1",
+    "coveralls": "^2.11.1",
+    "should": "^6.0.1",
+    "jshint-stylish": "^1.0.1",
+    "gulp-load-plugins": "^0.10.0",
+    "jsdoc": "^3.3.0-beta3", 
+    "webpack": "^1.8.9",
+    "gulp-plumber": "^1.0.0"
+  },
+  
+  "bin": {
+      "nodejs-microservice-poc": "cli.js"
+  },
+  "scripts": {
+    "docs": "rm -rf docs && ./node_modules/.bin/jsdoc -c ./jsdoc.json ./README.md && echo 'code{padding: 2px 4px;font-size: 90%;color:#c7254e;background-color:#f9f2f4;border-radius:4px;}' >> ./docs/styles/jsdoc-default.css",
+    "coveralls": "gulp test && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test": "gulp test"
+  }
+}
