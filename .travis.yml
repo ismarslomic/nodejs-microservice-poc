@@ -1,17 +1,15 @@
 language: node_js
 env: CI=true
 sudo: false
-
-
-#branches:
-#    only:
-#    - master
-
+cache:
+  directories:
+    - node_modules
 node_js:
   - "iojs"
   - "0.12"
 after_script:
   - npm run coveralls
+  - ./publish_docs.sh
 notifications:
   email:
     - ismar@slomic.no
