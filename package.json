@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/ismarslomic/nodejs-microservice-poc"
   },
-  "keywords":[
+  "keywords": [
     "nodejs-microservice-poc",
     "nodejs",
     "restify",
@@ -27,24 +27,24 @@
     "debug": "2.2.0"
   },
   "devDependencies": {
-    "gulp": "^3.8.8",
-    "gulp-util": "^3.0.1",
-    "gulp-bump": "^0.3.0",
+    "codeclimate-test-reporter": "0.0.4",
+    "coveralls": "^2.11.2",
+    "gulp": "^3.9.0",
+    "gulp-bump": "^0.3.1",
+    "gulp-istanbul": "^0.10.0",
     "gulp-jscs": "^1.6.0",
-    "gulp-jshint": "^1.9.4",
-    "gulp-mocha": "^2.0.0",
-    "gulp-istanbul": "^0.8.1",
-    "coveralls": "^2.11.1",
-    "should": "^6.0.1",
-    "jshint-stylish": "^1.0.1",
-    "gulp-load-plugins": "^0.10.0",
-    "jsdoc": "^3.3.0-beta3", 
-    "webpack": "^1.8.9",
-    "gulp-plumber": "^1.0.0"
+    "gulp-jshint": "^1.11.0",
+    "gulp-load-plugins": "^1.0.0",
+    "gulp-mocha": "^2.1.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-util": "^3.0.5",
+    "jsdoc": "^3.3.1",
+    "jshint-stylish": "^2.0.0",
+    "should": "^6.0.3",
+    "webpack": "^1.9.10"
   },
-  
   "bin": {
-      "nodejs-microservice-poc": "cli.js"
+    "nodejs-microservice-poc": "cli.js"
   },
   "scripts": {
     "docs": "rm -rf docs && ./node_modules/.bin/jsdoc -c ./jsdoc.json ./README.md && echo 'code{padding: 2px 4px;font-size: 90%;color:#c7254e;background-color:#f9f2f4;border-radius:4px;}' >> ./docs/styles/jsdoc-default.css",
