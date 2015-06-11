@@ -25,4 +25,4 @@ fi
 
 git add . -A
 git commit -m "Publish to GitHub Pages"
-git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+git push --force "https://${GH_TOKEN}@${GH_REF}" origin gh-pages
