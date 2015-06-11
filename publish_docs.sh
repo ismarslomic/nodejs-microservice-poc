@@ -12,8 +12,8 @@ cd docs
 
 echo "GitHub Pages directory: `pwd`"
 
-git config user.name "Travis CI"
-git config user.email "ismar@slomic.no"
+git config --global user.name "Travis CI"
+git config --global user.email "ismar@slomic.no"
 
 if [[ ! -d ./.git ]]; then
   git init
