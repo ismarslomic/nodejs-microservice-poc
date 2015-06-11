@@ -8,16 +8,19 @@ npm run docs
 
 cd docs
 
-echo "Document direcotry: `pwd`"
+echo "GitHub Pages directory: `pwd`"
+
+git config user.name "Travis CI"
+git config user.email "ismar@slomic.no"
 
 if [[ ! -d ./.git ]]; then
   git init
   git remote add origin git@github.com:ismarslomic/nodejs-microservice-poc.git
-  git co -b gh-pages
+  git checkout -b gh-pages
 else
-  git co gh-pages -q
+  git checkout gh-pages -q
 fi
 
 git add . -A
-git commit -m "publish docs"
-git push origin gh-pages --force
+git commit -m "Publish to GitHub Pages"
+git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages

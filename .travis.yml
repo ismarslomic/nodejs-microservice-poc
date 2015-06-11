@@ -1,5 +1,4 @@
 language: node_js
-env: CI=true
 sudo: false
 cache:
   directories:
@@ -9,8 +8,10 @@ node_js:
   - "0.12"
 after_script:
   - npm run coveralls
-  - git config --global alias.co checkout
   - ./publish_docs.sh
+env:
+  global:
+    - secure: "bfjDr/j92EnFsf4emAuE+9ADG/KsyTaou+ln7rueFZc7RsR7TUFChvhmy2xU5HcMWmVgLIF+sfOgJRALPcPonQAGyWhGUauxvIaPc5YlBOvpL8BFVezjmyYR0z/uxLE6aQB5jW3KYrXJQqMiGNdu6MjBG9E8984h1DaGBnUJhqmWyIuBM7HDeWofpltAgqkMzkSU8MDsIwOOeJlds9TQn4F/hF73pYnrKfvP17mKJ8XE4AgKlkSlgnXm9Alh6nb0CimrJehm8KrmyWBRkYwz9B86FIamU0mlJ9xMW6mqIIPyNaC/bVdX8yIh1h9kB9dRyHngD+o/wJACxHFQV8vwyfPonNzBOqnaEi7swMZK0Y9YpyNbook85yV8GEY2JrF2RJMALhEVuH0ono0jngUNae+xzdT/v2dtuLdyVrTqpfgzt2rLiP1nH/YYlIy/WtOXQB17BwTaUeOGBnyPLUtEydt34SxBrLp51x56B0NCqnwJcJIX43dRsRifipflr9qdfgc39fff9CxWf0PnpY2mbAxmBxHNs4hS7VK/DMW1p5kydNIQJgKNnuf4u/Z94TJQwCVXBepwT0Ntl2JukcTj7Pxo0mZ90NM5GbqPSvNzxcta6gDWTZX94e+ef24sK46CoFZIEfRolYdLLSB37KjCeVlR9eqj6vhGSwAEO6mz6/A="
 notifications:
   email:
     - ismar@slomic.no

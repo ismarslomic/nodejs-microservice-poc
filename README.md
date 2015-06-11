@@ -9,9 +9,8 @@
 
 Microservice PoC running at Nodejs inside Docker
 
-[Github Repo][project-url]
-
-[JSDOC Generated Document](http://ismarslomic.github.io/nodejs-microservice-poc)
+- [GitHub Repository and code][project-url]
+- [GitHub Pages](http://ismarslomic.github.io/nodejs-microservice-poc)
 
 ## Dev op tools
 - Source code coverage with [coveralls](https://coveralls.io). Note this is in addition to Codeclimate code coverage
@@ -43,13 +42,14 @@ git add .
 git commit -m “Initial commit with use of scaffolding”
 git remote add origin git@github.com:ismarslomic/nodejs-microservice-poc.git
 git push --set-upstream origin master
-git config --global alias.co checkout
 ```
 
 ### Setup Travis (one time only)
 1. Go to [Travis account](https://travis-ci.org/profile/ismarslomic)
 2. Press the Sync button
 3. Switch to ON for the repository
+4. If Travis has not been configured to make push towards GitHub, then follow 
+[these](https://gist.github.com/domenic/ec8b0fc8ab45f39403dd) instructions
 4. Make new `git push`to trigger build
 
 ### Setup Codeclimate (one time only)
