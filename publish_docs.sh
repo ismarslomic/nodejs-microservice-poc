@@ -17,7 +17,7 @@ git config --global user.email "ismar@slomic.no"
 
 if [[ ! -d ./.git ]]; then
   git init
-  git remote add origin git@github.com:ismarslomic/nodejs-microservice-poc.git
+  git remote add origin "https://${GH_TOKEN}@${GH_REF}"
   git checkout -b gh-pages
 else
   git checkout gh-pages -q
@@ -25,4 +25,4 @@ fi
 
 git add . -A
 git commit -m "Publish to GitHub Pages"
-git push --force "https://${GH_TOKEN}@${GH_REF}" origin gh-pages
+git push --force origin gh-pages
