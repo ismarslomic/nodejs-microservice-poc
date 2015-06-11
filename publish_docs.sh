@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/bin/bash
+
+set -o errexit -o nounset
 
 dir=`dirname $0`
 
