@@ -8,6 +8,22 @@ var jshint   = require('gulp-jshint');
 var mocha   = require('gulp-mocha');
 var plumber   = require('gulp-plumber');
 var util   = require('gulp-util');
+var del   = require('del');
+
+var conf = {
+  dirs: {
+    docs: 'docs',
+    coverage: 'coverage'
+  }
+};
+
+/**
+ * Clean task
+ * Removes the docs and coverage folders
+ */
+gulp.task('clean', function () {
+  return del([conf.dirs.docs, conf.dirs.coverage]);
+});
 
 var testFiles = ['./test/**/*.js', '!test/{temp,fixtures,temp/**,fixtures/**}'];
 

@@ -31,11 +31,13 @@
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
     "coveralls": "^2.11.2",
+    "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-bump": "^0.3.1",
     "gulp-istanbul": "^0.10.0",
     "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.11.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-mocha": "^2.1.1",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.5",
