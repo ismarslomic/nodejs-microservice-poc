@@ -1,14 +1,14 @@
 'use strict';
 
-var gulp   = require('gulp');
-var bump   = require('gulp-bump');
-var istanbul   = require('gulp-istanbul');
-var jscs   = require('gulp-jscs');
-var jshint   = require('gulp-jshint');
-var mocha   = require('gulp-mocha');
-var plumber   = require('gulp-plumber');
-var util   = require('gulp-util');
-var del   = require('del');
+var gulp   = require('gulp'),
+  bump   = require('gulp-bump'),
+  istanbul   = require('gulp-istanbul'),
+  jscs   = require('gulp-jscs'),
+  jshint   = require('gulp-jshint'),
+  mocha   = require('gulp-mocha'),
+  plumber   = require('gulp-plumber'),
+  util   = require('gulp-util'),
+  del   = require('del');
 
 var conf = {
   dirs: {
