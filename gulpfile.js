@@ -1,9 +1,16 @@
 'use strict';
 
 var gulp   = require('gulp');
-var plugins = require('gulp-load-plugins')();
+var bump   = require('gulp-bump');
+var istanbul   = require('gulp-istanbul');
+var jscs   = require('gulp-jscs');
+var jshint   = require('gulp-jshint');
+var mocha   = require('gulp-mocha');
+var plumber   = require('gulp-plumber');
+var util   = require('gulp-util');
 
 var testFiles = ['./test/**/*.js', '!test/{temp,fixtures,temp/**,fixtures/**}'];
+
 var paths = {
   lint: ['./gulpfile.js', './src/**/*.js'],
   watch: ['./gulpfile.js', './src/**'].concat(testFiles),
@@ -21,21 +28,21 @@ if (process.env.CI) {
 
 gulp.task('lint', function () {
   return gulp.src(paths.lint)
-    .pipe(plugins.jshint('.jshintrc'))
-    .pipe(plugins.plumber(plumberConf))
-    .pipe(plugins.jscs())
-    .pipe(plugins.jshint.reporter('jshint-stylish'));
+    .pipe(jshint('.jshintrc'))
+    .pipe(plumber(plumberConf))
+    .pipe(jscs())
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('istanbul', function (cb) {
   gulp.src(paths.source)
-    .pipe(plugins.istanbul()) // Covering files
-    .pipe(plugins.istanbul.hookRequire()) // Force `require` to return covered files
+    .pipe(istanbul()) // Covering files
+    .pipe(istanbul.hookRequire()) // Force `require` to return covered files
     .on('finish', function () {
       gulp.src(paths.tests)
-        .pipe(plugins.plumber(plumberConf))
-        .pipe(plugins.mocha())
-        .pipe(plugins.istanbul.writeReports()) // Creating the reports after tests runned
+        .pipe(plumber(plumberConf))
+        .pipe(mocha())
+        .pipe(istanbul.writeReports()) // Creating the reports after tests runned
         .on('finish', function() {
           process.chdir(__dirname);
           cb();
@@ -44,10 +51,10 @@ gulp.task('istanbul', function (cb) {
 });
 
 gulp.task('bump', ['test'], function () {
-  var bumpType = plugins.util.env.type || 'patch'; // major.minor.patch
+  var bumpType = util.env.type || 'patch'; // major.minor.patch
 
   return gulp.src(['./package.json'])
-    .pipe(plugins.bump({ type: bumpType }))
+    .pipe(bump({ type: bumpType }))
     .pipe(gulp.dest('./'));
 });
 
