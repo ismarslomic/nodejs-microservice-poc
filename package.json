@@ -22,11 +22,11 @@
     "microservice"
   ],
   "dependencies": {
+    "debug": "2.2.0",
     "lodash": "3.9.3",
     "mongoose": "^4.0.5",
     "q": "1.4.1",
-    "restify": "^3.0.3",
-    "winston": "^1.0.0"
+    "restify": "^3.0.3"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "0.0.4",
