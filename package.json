@@ -51,7 +51,7 @@
   },
   "scripts": {
     "docs": "gulp docs",
-    "coveralls": "gulp coveralls:server",
+    "coveralls": "gulp coveralls",
     "test": "gulp test"
   }
 }
