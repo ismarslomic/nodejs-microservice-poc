@@ -2,7 +2,7 @@
 files:
   # define files included in the analysis (defaults to ["{app,lib}/**/*.rb"])
   included:
-    - src/**/*.js
-  # define files excluded from the analysis (defaults to [])
+    - server/**/*.js
+  # exclude test files named *.spec.js
   excluded:
-    - test/**/*.js
+    - server/**/*.spec.js

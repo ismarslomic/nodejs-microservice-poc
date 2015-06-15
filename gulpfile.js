@@ -1,96 +1,35 @@
+/**
+ * Usage
+ * gulp [task]  --env development
+ */
 'use strict';
 
-var gulp   = require('gulp'),
-  bump   = require('gulp-bump'),
-  istanbul   = require('gulp-istanbul'),
-  jscs   = require('gulp-jscs'),
-  jshint   = require('gulp-jshint'),
-  mocha   = require('gulp-mocha'),
-  plumber   = require('gulp-plumber'),
-  util   = require('gulp-util'),
-  del   = require('del');
+var gulp = require('gulp');
 
-var conf = {
-  dirs: {
-    docs: 'docs',
-    coverage: 'coverage'
-  }
+var minimist = require('minimist');
+var requireDir = require('require-dir');
+
+// all known options that can be passed by --option
+// and their defaults
+var knownOptions = {
+	string: ['env'],
+	default: {
+		env: process.env.NODE_ENV || 'test'
+	}
 };
+
+// parse optional arguments and set environment variables
+var options = minimist(process.argv.slice(2), knownOptions);
+process.env.NODE_ENV = options.env;
+
+// include tasks
+requireDir('./gulp/tasks');
 
 /**
- * Clean task
- * Removes the docs and coverage folders
+ * Grouped task definitions
  */
-gulp.task('clean', function () {
-  return del([conf.dirs.docs, conf.dirs.coverage]);
-});
+gulp.task('serve', ['jshint', 'codestyle', 'unit', 'watch']);
 
-var testFiles = ['./test/**/*.js', '!test/{temp,fixtures,temp/**,fixtures/**}'];
+gulp.task('build:all', ['test']);
 
-var paths = {
-  lint: ['./gulpfile.js', './src/**/*.js'],
-  watch: ['./gulpfile.js', './src/**'].concat(testFiles),
-  tests: testFiles,
-  source: ['./src/**/*.js']
-};
-
-var plumberConf = {};
-
-if (process.env.CI) {
-  plumberConf.errorHandler = function(err) {
-    throw err;
-  };
-}
-
-gulp.task('lint', function () {
-  return gulp.src(paths.lint)
-    .pipe(jshint('.jshintrc'))
-    .pipe(plumber(plumberConf))
-    .pipe(jscs())
-    .pipe(jshint.reporter('jshint-stylish'));
-});
-
-gulp.task('istanbul', function (cb) {
-  gulp.src(paths.source)
-    .pipe(istanbul()) // Covering files
-    .pipe(istanbul.hookRequire()) // Force `require` to return covered files
-    .on('finish', function () {
-      gulp.src(paths.tests)
-        .pipe(plumber(plumberConf))
-        .pipe(mocha())
-        .pipe(istanbul.writeReports()) // Creating the reports after tests runned
-        .on('finish', function() {
-          process.chdir(__dirname);
-          cb();
-        });
-    });
-});
-
-gulp.task('bump', ['test'], function () {
-  var bumpType = util.env.type || 'patch'; // major.minor.patch
-
-  return gulp.src(['./package.json'])
-    .pipe(bump({ type: bumpType }))
-    .pipe(gulp.dest('./'));
-});
-
-gulp.task('watch', ['test'], function () {
-  gulp.watch(paths.watch, function() {
-    // use child process, otherwise will get error.
-    require('child_process').spawn('gulp', ['test'], {
-      env: process.env,
-      cwd: process.cwd(),
-      stdio: [
-        process.stdin,
-        process.stdout,
-        process.stderr
-      ]
-    });
-  });
-});
-
-gulp.task('test', ['lint', 'istanbul']);
-
-gulp.task('release', ['bump']);
-
-gulp.task('default', ['watch']);
+gulp.task('default', ['build:all']);

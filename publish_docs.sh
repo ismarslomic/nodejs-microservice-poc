@@ -8,7 +8,7 @@ dir=`dirname $0`
 cd $dir
 npm run docs
 
-cd docs
+cd build/docs
 
 echo "GitHub Pages directory: `pwd`"
 
