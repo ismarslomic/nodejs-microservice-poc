@@ -47,7 +47,8 @@
     "map-stream": "0.1.0",
     "minimist": "^1.1.1",
     "require-dir": "^0.3.0",
-    "should": "^6.0.3"
+    "should": "^6.0.3",
+    "winston": "^1.0.0"
   },
   "scripts": {
     "docs": "gulp docs",
