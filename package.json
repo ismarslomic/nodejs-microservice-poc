@@ -41,15 +41,15 @@
     "gulp-jsdoc": "^0.1.4",
     "gulp-jshint": "^1.11.0",
     "gulp-load-plugins": "^1.0.0-rc.1",
-    "gulp-mocha": "^2.1.1",
+    "gulp-mocha": "^2.1.2",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-util": "^3.0.5",
-    "jshint-stylish": "^2.0.0",
+    "jshint-stylish": "^2.0.1",
     "map-stream": "0.1.0",
     "minimist": "^1.1.1",
     "require-dir": "^0.3.0",
-    "should": "^6.0.3"
+    "should": "^7.0.1"
   },
   "scripts": {
     "docs": "gulp docs",
