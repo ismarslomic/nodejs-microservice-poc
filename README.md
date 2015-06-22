@@ -125,6 +125,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 
 ## Reference
+* [nodes-restful-api](https://github.com/tutsplus/nodes-restful-api) - RESTful API with MongoDB, Restify, NodeJS
 * [CI Test for Browser](https://ci.testling.com/) - Run your browser tests on every push, demo project [js-traverse](https://github.com/substack/js-traverse)
 * [GA on Github](https://github.com/igrigorik/ga-beacon) - Google Analytics collector-as-a-service (using GA measurement protocol).
 * [idiomatic.js](https://github.com/rwaldron/idiomatic.js) - Principles of Writing Consistent, Idiomatic JavaScript

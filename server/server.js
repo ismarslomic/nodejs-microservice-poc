@@ -1,5 +1,10 @@
 'use strict';
 
+// Set default node environment to development
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+require('./config/index');
+require('./config/mongoose');
 var restify = require('restify');
 
 // using bunyan logger since restify is supporting it
@@ -13,7 +18,7 @@ var prettyStdOut = new PrettyStream();
 prettyStdOut.pipe(process.stdout);
 
 var logger = bunyan.createLogger({
-	name: 'foo',
+	name: 'server',
 	streams: [{
 		level: 'debug',
 		type: 'raw',

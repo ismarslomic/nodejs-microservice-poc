@@ -7,7 +7,24 @@
 
 var mongoose = require('mongoose');
 var config = require('./index');
-var logger = require('winston');
+// using bunyan logger since restify is supporting it
+var bunyan = require('bunyan');
+
+// pretty printing capabilities
+var PrettyStream = require('bunyan-prettystream');
+
+var prettyStdOut = new PrettyStream();
+
+prettyStdOut.pipe(process.stdout);
+
+var logger = bunyan.createLogger({
+	name: 'mongoose',
+	streams: [{
+		level: 'debug',
+		type: 'raw',
+		stream: prettyStdOut
+	}]
+});
 
 // connect to mongodb
 var connection = mongoose.connect(config.mongo.uri, config.mongo.options);
