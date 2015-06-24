@@ -11,12 +11,12 @@ var env = process.env.NODE_ENV || 'development';
 var User = require('../api/user/user.model').model;
 
 /*
-// Insert some data needed to bootstrap or init the application
+ // Insert some data needed to bootstrap or init the application
 
-if ('production' === env) {
-	// Insert some data needed to init the production instance only, update a version info ...
-}
-*/
+ if ('production' === env) {
+ // Insert some data needed to init the production instance only, update a version info ...
+ }
+ */
 
 /*
  * Insert dummy data to test the application
