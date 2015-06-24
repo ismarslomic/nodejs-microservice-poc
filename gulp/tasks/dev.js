@@ -4,14 +4,24 @@
  */
 'use strict';
 
+var path = require('path');
 var gulp = require('gulp');
 var conf = require('../config');
+var nodemon = require('gulp-nodemon');
 
 /**
  * watch task`
  * Watch on javascript files, tests and sass files
  */
 gulp.task('watch', function () {
-	process.env.NODE_ENV = 'development'
-	gulp.watch("**/*.js", ['test']);
+	nodemon({
+		script: path.join(conf.dirs.server, 'server.js'),
+		ext: 'js',
+		env: {
+			'NODE_ENV': 'development'
+		}
+	})
+		.on('restart', function () {
+			console.log('Server restarted!');
+		});
 });

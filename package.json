@@ -24,7 +24,7 @@
   "dependencies": {
     "debug": "2.2.0",
     "lodash": "3.9.3",
-    "mongoose": "^4.0.5",
+    "mongoose": "^4.0.6",
     "q": "1.4.1",
     "restify": "^3.0.3"
   },
@@ -42,9 +42,10 @@
     "gulp-jshint": "^1.11.0",
     "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-mocha": "^2.1.2",
+    "gulp-nodemon": "^2.0.3",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
-    "gulp-util": "^3.0.5",
+    "gulp-util": "^3.0.6",
     "jshint-stylish": "^2.0.1",
     "map-stream": "0.1.0",
     "minimist": "^1.1.1",

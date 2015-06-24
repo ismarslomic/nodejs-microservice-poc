@@ -7,6 +7,7 @@ var path = require('path');
 var rootPath = path.normalize(__dirname + '../../');
 var conf = {
 	dirs: {
+		server: 'server',
 		build: 'build',
 		docs: 'docs',
 		coverage: 'coverage'

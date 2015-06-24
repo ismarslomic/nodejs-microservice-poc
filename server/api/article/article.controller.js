@@ -19,7 +19,6 @@ var logger = bunyan.createLogger({
 	}]
 });
 
-
 exports = module.exports = ArticleController;
 
 function ArticleController() {
@@ -38,11 +37,11 @@ ArticleController.prototype = {
 
 		Article.create(parseBody, function (err, article) {
 			if (err) {
-				logger.info("createArticle() error: %s", err);
+				logger.info('createArticle() error: %s', err);
 				res.status(500);
 				res.json({
 					type: false,
-					data: "Error occured: " + err
+					data: 'Error occured: ' + err
 				})
 			} else {
 				res.json({
