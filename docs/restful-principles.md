@@ -2,12 +2,32 @@
 Following principles are based on the references such as Github API and Twitter API in addition to blogs
 collecting the best practices. See references at bottom of this list.
 
-## Table of contents
+## Principles
 - [1. Use nouns but not verbs](#1-use-nouns-but-not-verbs)
 - [2. Use plural nouns](#2-use-plural-nouns)
 - [3. GET method and query parameters should not alter the state](#3-get-method-and-query-parameters-should-not-alter-the-state)
 - [4. Relations](#4-relations)
 - [5. Versioning](#5-versioning)
+- [6. Documentation](#6-documentation)
+- [7. Provide filtering, sorting, field selection and paging for collections](#7-provide-filtering-sorting-field-selection-and-paging-for-collections)
+	- [Filtering](#filtering)
+	- [Sorting](#sorting)
+	- [Field selection](#field-selection)
+	- [Paging](#paging)
+		- [Paging parameters](#paging-parameters)
+		- [HTTP Header link](#http-header-link)
+		- [Total number of entries](#total-number-of-entries)
+- [8. Return a resource representation in PATCH and POST](8-return-a-resource-representation-in-patch-and-post)
+- [9. Use HATEOAS](#9-use-hateoas)
+- [10. Handle Errors with HTTP status codes](#10-handle-errors-with-http-status-codes)
+	- [Use HTTP status codes](#use-http-status-codes)
+	- [Use error payloads](#use-error-payloads)
+- [11. Use HTTP headers for serialization formats](#11-use-http-headers-for-serialization-formats)
+- [12. Use camelCase for field names](#12-use-camelcase-for-field-names)
+- [13. Ensure gzip is supported](#13-ensure-gzip-is-supported)
+- [14. Rate limiting](#14-rate-limiting)
+- [15. Authentication](#15-authentication)
+- [16. Caching](#16-caching)
 
 ## 1. Use nouns but not verbs
 * GET '/api/notes' to `query` function
@@ -43,12 +63,12 @@ If a resource is related to another resource use subresources.
 ## 6. Documentation
 
 ## 7. Provide filtering, sorting, field selection and paging for collections
-### Filtering:
+### Filtering
 Use a unique query parameter for all fields or a query language for filtering.
 
 	GET /notes?q={"title":"Welcome to the first page"} #returns a list of notes with this string phrase
 
-### Sorting:
+### Sorting
 Allow ascending and descending sorting over multiple fields.
 
 	GET /notes?sort=-title #sort a notes resource by title descending
