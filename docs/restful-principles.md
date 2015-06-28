@@ -39,9 +39,9 @@ Following principles are based on the references such as [Github API](https://de
 |-----------|:----------------------:|-----------------------------------|-------------|-----------------------------------| -----------|
 | GET       |   `/api/v1/articles`   | Retrieves collection of resources | `query`     | YES                               | YES|
 | GET       | `/api/v1/articles/:id` | Retrieves single resources        | `detail`    | YES                               | YES|
-| POST      |   `/api/v1/articles`   | Creates new resource              | `insert`    | NO (use unique transaction key) | NO|
+| POST      |   `/api/v1/articles`   | Creates new resource              | `insert`    | NO (sol.:use unique transaction key) | NO|
 | DELETE    | `/api/v1/articles/:id` | Deletes existing resource         | `remove`    | YES                               | NO|
-| PATCH     | `/api/v1/articles/:id` | Updates existing resource         | `update`    | NO (use conditional req handler)                               | NO|
+| PATCH     | `/api/v1/articles/:id` | Updates existing resource         | `update`    | NO (sol.:use conditional req handler)                               | NO|
 
 ## 2. Use plural nouns
 Do not mix up singular and plural nouns. Keep it simple and use only plural nouns for all resources.
