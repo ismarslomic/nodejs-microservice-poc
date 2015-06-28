@@ -1,12 +1,11 @@
-# Restful principles based on best practices #
-Following principles are based on the references such as Github API and Twitter API in addition to blogs
-collecting the best practices. See references at bottom of this list.
+# RESTful services principles#
+Following principles are based on the references such as [Github API](https://developer.github.com/v3), [Stripe API](https://stripe.com/docs/api#authentication) and [Twitter's API](https://dev.twitter.com/rest/public) in addition to different blogs describing the best practices. See references at bottom of this list.
 
 ## Principles
-- [1. Use nouns but not verbs](#1-use-nouns-but-not-verbs)
-- [2. Use plural nouns](#2-use-plural-nouns)
-- [3. GET method and query parameters should not alter the state](#3-get-method-and-query-parameters-should-not-alter-the-state)
-- [4. Relations](#4-relations)
+- [1. Use nouns but not verbs](#1-use-nouns-but-not-verbs) :white_check_mark:
+- [2. Use plural nouns](#2-use-plural-nouns) :white_check_mark:
+- [3. GET method and query parameters should not alter the :white_check_mark: state](#3-get-method-and-query-parameters-should-not-alter-the-state)
+- [4. Relations](#4-relations) 
 - [5. Versioning](#5-versioning)
 - [6. Documentation](#6-documentation)
 - [7. Provide filtering, sorting, field selection and paging for collections](#7-provide-filtering-sorting-field-selection-and-paging-for-collections)
@@ -28,6 +27,7 @@ collecting the best practices. See references at bottom of this list.
 - [14. Rate limiting](#14-rate-limiting)
 - [15. Authentication](#15-authentication)
 - [16. Caching](#16-caching)
+- [17. Idempotent requests](#17-idempotent-requests)
 
 ## 1. Use nouns but not verbs
 * GET '/api/notes' to `query` function
@@ -57,8 +57,19 @@ If a resource is related to another resource use subresources.
 
 	GET /cars/711/drivers/ Returns a list of drivers for car 711
 	GET /cars/711/drivers/4 Returns driver #4 for car 711
- 
+	
+Include subset of the attributes for subresources when fetching a list of resources, to avoid performance issues. To obtain full list of attributes use the detailed representation.
+
+Consider using expand attribute to tell which subresources should be returned with full list of attributes. See [Stripe API documentation](https://stripe.com/docs/api#expanding_objects) for more details.
+
 ## 5. Versioning
+Always version your API. Versioning helps you iterate faster and prevents invalid requests from hitting updated endpoints. It also helps smooth over any major API version transitions as you can continue to offer old API versions for a period of time.
+
+Version number can be specified in the URLs and HTTP headers.
+
+Following the approach Stripe has taken in their [API versioning](https://stripe.com/docs/api#versioning) - the URL should have major version number (v1), but the API has full [semver versioning](http://semver.org/) which can be chosen using HTTP request header `accept-version`. In this case, the major version provides structural stability of the API as a whole while the sub-versions accounts for smaller changes (field deprecations, endpoint changes, etc).
+
+Read also [How Are Rest APIs versioned](http://www.lexicalscope.com/blog/2012/03/12/how-are-rest-apis-versioned/)
 
 ## 6. Documentation
 
@@ -157,10 +168,28 @@ have mid-word capitalization):
 * `X-Rate-Limit-Reset` - The number of seconds left in the current period
 
 ## 15. Authentication
+A RESTful API should be stateless. This means that request authentication should not depend on cookies or sessions. Instead, each request should come with some sort authentication credentials.
+
+3 authentication mechanisms can be considered:
+
+1. Use `HTTP Basic Auth` and SSL to pass randomly generated access token delivered in the user name field of the HTTP Basic Auth. However, this token-over-basic-auth method of authentication is only acceptable in cases where it's practical to have the user copy a token from an administration interface to the API consumer environment. In cases where this isn't possible, OAuth 2 should be used to provide secure token transfer to a third party. See example on [Strip API](https://stripe.com/docs/api#authentication) and [Github API](https://developer.github.com/v3/#authentication).
+2. Use [OAuth 2](http://oauth.net/2/) to pass the bearer tokens by sending token in the header
+3. Send the OAuth 2 token in the parameter
+
+For what it's worth, all three methods above are just ways to transport the token across the API boundary. The actual underlying token itself could be identical.
+
+Note, we are talking about authenticating the system/client of the API, not the user itself. 
 
 ## 16. Caching
+
+## 17. Idempotent requests
+To safely retry an API request without accidentally performing the same operation twice, include unique key to the `POST` requests by using HTTP header, such as `Idempotency-Key: <key>` like in [Stripe API] (https://stripe.com/docs/api#idempotent_requests). For example, if a request to create a article fails due to a network connection error, you can make a second request with the same key to guarantee that only a single article is created.
+
+## 18. SSL everywhere - all the time
 
 ## References
 * [10 Best Practices for Better RESTful API](http://blog.mwaysolutions.com/2014/06/05/10-best-practices-for-better-restful-api/)
 * [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
 * [Github API v3](https://developer.github.com/v3/)
+* [Stripe API](https://stripe.com/docs/api#authentication)
+* [Twitter's API](https://dev.twitter.com/rest/public)
