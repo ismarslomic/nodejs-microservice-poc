@@ -2,41 +2,37 @@
 Following principles are based on the references such as [Github API](https://developer.github.com/v3), [Stripe API](https://stripe.com/docs/api#authentication) and [Twitter's API](https://dev.twitter.com/rest/public) in addition to different blogs describing the best practices. See references at bottom of this list.
 
 ## Principles
+:white_circle: Implementation in progress / not verified yet
+:white_check_mark: Implemented / Verified OK
+
 | Principle   |      Implemented by      |  Status |
 |----------|:-------------:|------:|
-|[1. Use nouns but not verbs](#1-use-nouns-but-not-verbs)|[nodejs-microservice-poc]|:white_check_mark:|
-|[2. Use plural nouns](#2-use-plural-nouns)|[nodejs-microservice-poc]|:white_check_mark:|
-|[3. GET method and query parameters should not alter the  state](#3-get-method-and-query-parameters-should-not-alter-the-state)|[nodejs-microservice-poc]|:white_check_mark:|
-| | | |
-| | | |
-| | | |
-| | | |
-| | | |
-| | | || | | |
-
-- [4. Relations](#4-relations) 
-- [5. Versioning](#5-versioning)
-- [6. Documentation](#6-documentation)
-- [7. Provide filtering, sorting, field selection and paging for collections](#7-provide-filtering-sorting-field-selection-and-paging-for-collections)
-	- [Filtering](#filtering)
-	- [Sorting](#sorting)
-	- [Field selection](#field-selection)
-	- [Paging](#paging)
-		- [Paging parameters](#paging-parameters)
-		- [HTTP Header link](#http-header-link)
-		- [Total number of entries](#total-number-of-entries)
-- [8. Return a resource representation in PATCH and POST](8-return-a-resource-representation-in-patch-and-post)
-- [9. Use HATEOAS](#9-use-hateoas)
-- [10. Handle Errors with HTTP status codes](#10-handle-errors-with-http-status-codes)
-	- [Use HTTP status codes](#use-http-status-codes)
-	- [Use error payloads](#use-error-payloads)
-- [11. Use HTTP headers for serialization formats](#11-use-http-headers-for-serialization-formats)
-- [12. Use camelCase for field names](#12-use-camelcase-for-field-names)
-- [13. Ensure gzip is supported](#13-ensure-gzip-is-supported)
-- [14. Rate limiting](#14-rate-limiting)
-- [15. Authentication](#15-authentication)
-- [16. Caching](#16-caching)
-- [17. Idempotent requests](#17-idempotent-requests)
+|[1. Use nouns but not verbs](#1-use-nouns-but-not-verbs)|[nodejs-microservice-poc]|:white_circle:|
+|[2. Use plural nouns](#2-use-plural-nouns)|[nodejs-microservice-poc]|:white_circle:|
+|[3. GET method and query parameters should not alter the  state](#3-get-method-and-query-parameters-should-not-alter-the-state)|[nodejs-microservice-poc]|:white_circle:|
+|[4. Relations](#4-relations)|[nodejs-microservice-poc] and [restify-mongoose]|:white_circle:|
+|[5. Versioning](#5-versioning)|[nodejs-microservice-poc]|:white_circle:|
+|[6. Documentation](#6-documentation)|[nodejs-microservice-poc]|:white_circle:|
+|[7. Provide filtering, sorting, field selection and paging for collections](#7-provide-filtering-sorting-field-selection-and-paging-for-collections)|[restify-mongoose]|:white_check_mark:|
+|&nbsp;&nbsp;&nbsp;- [Filtering](#filtering)|[restify-mongoose]|:white_check_mark:|
+|&nbsp;&nbsp;&nbsp;- [Sorting](#sorting)|[restify-mongoose]|:white_check_mark:|
+|&nbsp;&nbsp;&nbsp;- [Field selection](#field-selection)|[restify-mongoose]|:white_check_mark:|
+|&nbsp;&nbsp;&nbsp;- [Paging](#paging)|[restify-mongoose]|:white_check_mark:|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Paging parameters](#paging-parameters)|[restify-mongoose]|:white_check_mark:|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [HTTP Header link](#http-header-link)|[restify-mongoose]|:white_check_mark:|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Total number of entries](#total-number-of-entries)|[restify-mongoose]|:white_check_mark:|
+|[8. Return a resource representation in PATCH and POST](8-return-a-resource-representation-in-patch-and-post)|[restify-mongoose]|:white_circle:|
+|[9. Use HATEOAS](#9-use-hateoas)|[restify-mongoose]|:white_circle:|
+|[10. Handle Errors with HTTP status codes](#10-handle-errors-with-http-status-codes)|[nodejs-microservice-poc] and [restify-mongoose]|:white_circle:|
+|&nbsp;&nbsp;&nbsp;-[Use HTTP status codes](#use-http-status-codes)|[nodejs-microservice-poc] and [restify-mongoose]|:white_circle:|
+|&nbsp;&nbsp;&nbsp;-[Use error payloads](#use-error-payloads)|[nodejs-microservice-poc] and [restify-mongoose]|:white_circle:|
+|[11. Use HTTP headers for serialization formats](#11-use-http-headers-for-serialization-formats)|[nodejs-microservice-poc]|:white_circle: Implement errors for formats that are not implemented|
+|[12. Use camelCase for field names](#12-use-camelcase-for-field-names)|[nodejs-microservice-poc]|:white_circle:|
+|[13. Ensure gzip is supported](#13-ensure-gzip-is-supported)|[nodejs-microservice-poc]|:white_circle:|
+|[14. Rate limiting](#14-rate-limiting)|[nodejs-microservice-poc] or [restify-mongoose]|:white_circle: Not sure if the rate headers are supported OOB in restify|
+|[15. Authentication](#15-authentication)|[nodejs-microservice-poc]|:white_circle: See [StackOwerflow thread](http://stackoverflow.com/questions/18411946/what-is-the-best-way-to-implement-a-token-based-authentication-for-restify-js)|
+|[16. Caching](#16-caching)|[nodejs-microservice-poc]|:white_circle:|
+|[17. Idempotent requests](#17-idempotent-requests)|[restify-mongoose]|:white_circle:|
 
 ## 1. Use nouns but not verbs
 * GET '/api/notes' to `query` function
