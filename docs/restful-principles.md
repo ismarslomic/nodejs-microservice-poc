@@ -2,9 +2,18 @@
 Following principles are based on the references such as [Github API](https://developer.github.com/v3), [Stripe API](https://stripe.com/docs/api#authentication) and [Twitter's API](https://dev.twitter.com/rest/public) in addition to different blogs describing the best practices. See references at bottom of this list.
 
 ## Principles
-- [1. Use nouns but not verbs](#1-use-nouns-but-not-verbs) :white_check_mark:
-- [2. Use plural nouns](#2-use-plural-nouns) :white_check_mark:
-- [3. GET method and query parameters should not alter the :white_check_mark: state](#3-get-method-and-query-parameters-should-not-alter-the-state)
+| Principle   |      Implemented by      |  Status |
+|----------|:-------------:|------:|
+|[1. Use nouns but not verbs](#1-use-nouns-but-not-verbs)|[nodejs-microservice-poc]|:white_check_mark:|
+|[2. Use plural nouns](#2-use-plural-nouns)|[nodejs-microservice-poc]|:white_check_mark:|
+|[3. GET method and query parameters should not alter the  state](#3-get-method-and-query-parameters-should-not-alter-the-state)|[nodejs-microservice-poc]|:white_check_mark:|
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | || | | |
+
 - [4. Relations](#4-relations) 
 - [5. Versioning](#5-versioning)
 - [6. Documentation](#6-documentation)
@@ -181,6 +190,13 @@ For what it's worth, all three methods above are just ways to transport the toke
 Note, we are talking about authenticating the system/client of the API, not the user itself. 
 
 ## 16. Caching
+HTTP provides a built-in caching framework! All you have to do is include some additional outbound response headers and do a little validation when you receive some inbound request headers.
+
+There are 2 approaches: [ETag](https://en.wikipedia.org/wiki/HTTP_ETag) and [Last-Modified](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.29)
+
+***ETag***: When generating a request, include a HTTP header ETag containing a hash or checksum of the representation. This value should change whenever the output representation changes. Now, if an inbound HTTP requests contains a `If-None-Match` header with a matching ETag value, the API should return a `304 Not Modified` status code instead of the output representation of the resource.
+
+***Last-Modified***: This basically works like to ETag, except that it uses timestamps. The response header `Last-Modified` contains a timestamp in [RFC 1123](http://www.ietf.org/rfc/rfc1123.txt) format which is validated against `If-Modified-Since`. Note that the HTTP spec has had [3 different acceptable date formats](http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3) and the server should be prepared to accept any one of them.
 
 ## 17. Idempotent requests
 To safely retry an API request without accidentally performing the same operation twice, include unique key to the `POST` requests by using HTTP header, such as `Idempotency-Key: <key>` like in [Stripe API] (https://stripe.com/docs/api#idempotent_requests). For example, if a request to create a article fails due to a network connection error, you can make a second request with the same key to guarantee that only a single article is created.
@@ -193,3 +209,6 @@ To safely retry an API request without accidentally performing the same operatio
 * [Github API v3](https://developer.github.com/v3/)
 * [Stripe API](https://stripe.com/docs/api#authentication)
 * [Twitter's API](https://dev.twitter.com/rest/public)
+
+[nodejs-microservice-poc]: https://github.com/ismarslomic/nodejs-microservice-poc
+[restify-mongoose]: https://github.com/ismarslomic/restify-mongoose
