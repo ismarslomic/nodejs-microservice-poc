@@ -35,11 +35,13 @@ Following principles are based on the references such as [Github API](https://de
 |[17. Idempotent requests](#17-idempotent-requests)|[restify-mongoose]|:white_circle:|
 
 ## 1. Use nouns but not verbs
-* GET '/api/notes' to `query` function
-* GET '/api/notes/:id' to `detail` function
-* POST '/api/notes' to `insert` function
-* DELETE '/api/notes/:id' to `remove` function
-* PATCH '/api/notes/:id' to `update` function
+| HTTP verb |          Route         | Description                       | JS Function | [Idempotent](http://tools.ietf.org/html/rfc7231#section-4.2.2)                      |[Safe](http://tools.ietf.org/html/rfc7231#section-4.2.1) |
+|-----------|:----------------------:|-----------------------------------|-------------|-----------------------------------| -----------|
+| GET       |   `/api/v1/articles`   | Retrieves collection of resources | `query`     | YES                               | YES|
+| GET       | `/api/v1/articles/:id` | Retrieves single resources        | `detail`    | YES                               | YES|
+| POST      |   `/api/v1/articles`   | Creates new resource              | `insert`    | NO creates new resource each time | NO|
+| DELETE    | `/api/v1/articles/:id` | Deletes existing resource         | `remove`    | YES                               | NO|
+| PATCH     | `/api/v1/articles/:id` | Updates existing resource         | `update`    | NO                               | NO|
 
 ## 2. Use plural nouns
 Do not mix up singular and plural nouns. Keep it simple and use only plural nouns for all resources.
