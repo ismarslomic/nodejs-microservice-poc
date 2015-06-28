@@ -39,9 +39,9 @@ Following principles are based on the references such as [Github API](https://de
 |-----------|:----------------------:|-----------------------------------|-------------|-----------------------------------| -----------|
 | GET       |   `/api/v1/articles`   | Retrieves collection of resources | `query`     | YES                               | YES|
 | GET       | `/api/v1/articles/:id` | Retrieves single resources        | `detail`    | YES                               | YES|
-| POST      |   `/api/v1/articles`   | Creates new resource              | `insert`    | NO creates new resource each time | NO|
+| POST      |   `/api/v1/articles`   | Creates new resource              | `insert`    | NO (use unique transaction key) | NO|
 | DELETE    | `/api/v1/articles/:id` | Deletes existing resource         | `remove`    | YES                               | NO|
-| PATCH     | `/api/v1/articles/:id` | Updates existing resource         | `update`    | NO                               | NO|
+| PATCH     | `/api/v1/articles/:id` | Updates existing resource         | `update`    | NO (use conditional req handler)                               | NO|
 
 ## 2. Use plural nouns
 Do not mix up singular and plural nouns. Keep it simple and use only plural nouns for all resources.
@@ -197,7 +197,11 @@ There are 2 approaches: [ETag](https://en.wikipedia.org/wiki/HTTP_ETag) and [Las
 ***Last-Modified***: This basically works like to ETag, except that it uses timestamps. The response header `Last-Modified` contains a timestamp in [RFC 1123](http://www.ietf.org/rfc/rfc1123.txt) format which is validated against `If-Modified-Since`. Note that the HTTP spec has had [3 different acceptable date formats](http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3) and the server should be prepared to accept any one of them.
 
 ## 17. Idempotent requests
+***POST***
 To safely retry an API request without accidentally performing the same operation twice, include unique key to the `POST` requests by using HTTP header, such as `Idempotency-Key: <key>` like in [Stripe API] (https://stripe.com/docs/api#idempotent_requests). For example, if a request to create a article fails due to a network connection error, you can make a second request with the same key to guarantee that only a single article is created.
+
+***PATCH***
+For `PATCH` requests use a conditional request such that the request will fail if the resource has been updated since the client last accessed the resource. For example, the client can use a strong `ETag` [RFC2616](http://tools.ietf.org/html/rfc2616) in an `If-Match` header on the PATCH request.
 
 ## 18. SSL everywhere - all the time
 
