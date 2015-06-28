@@ -3,11 +3,11 @@ Following principles are based on the references such as Github API and Twitter 
 collecting the best practices. See references at bottom of this list.
 
 # Table of contents
-- [1. Use nouns but not verbs](#1.-use-nouns-but-not-verbs)
-- [2. Use plural nouns](#2.-use-plural-nouns)
-- [3. GET method and query parameters should not alter the state](#3.-get-method-and-query-parameters-should-not-alter-the-state)
-- [4. Relations](#4.-relations)
-- [5. Versioning](#5.-versioning)
+- [1. Use nouns but not verbs](#1-use-nouns-but-not-verbs)
+- [2. Use plural nouns](#2-use-plural-nouns)
+- [3. GET method and query parameters should not alter the state](#3-get-method-and-query-parameters-should-not-alter-the-state)
+- [4. Relations](#4-relations)
+- [5. Versioning](#5-versioning)
 
 # 1. Use nouns but not verbs
 * GET '/api/notes' to `query` function
