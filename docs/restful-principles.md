@@ -3,6 +3,7 @@ Following principles are based on the references such as [Github API](https://de
 
 ## Principles
 :white_circle: Implementation in progress / not verified yet
+
 :white_check_mark: Implemented / Verified OK
 
 | Principle   |      Implemented by      |  Status |
@@ -21,7 +22,7 @@ Following principles are based on the references such as [Github API](https://de
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Paging parameters](#paging-parameters)|[restify-mongoose]|:white_check_mark:|
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [HTTP Header link](#http-header-link)|[restify-mongoose]|:white_check_mark:|
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- [Total number of entries](#total-number-of-entries)|[restify-mongoose]|:white_check_mark:|
-|[8. Return a resource representation in PATCH and POST](8-return-a-resource-representation-in-patch-and-post)|[restify-mongoose]|:white_circle:|
+|[8. Return a resource representation in PATCH and POST](8-return-a-resource-representation-in-patch-and-post)|[restify-mongoose]|:white_check_mark:|
 |[9. Use HATEOAS](#9-use-hateoas)|[restify-mongoose]|:white_circle:|
 |[10. Handle Errors with HTTP status codes](#10-handle-errors-with-http-status-codes)|[nodejs-microservice-poc] and [restify-mongoose]|:white_circle:|
 |&nbsp;&nbsp;&nbsp;-[Use HTTP status codes](#use-http-status-codes)|[nodejs-microservice-poc] and [restify-mongoose]|:white_circle:|
