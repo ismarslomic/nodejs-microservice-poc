@@ -125,7 +125,7 @@ To send the total entries back to the user use the custom HTTP header: `X-Total-
 ## 9. Use HATEOAS
 **H**ypermedia **a**s **t**he **E**ngine **o**f **A**pplication **S**tate is a principle that hypertext links should be used to create a better navigation through the API. Level 3 of [Richardson Maturity Model], the highest level, uses HATEOAS to deal with discovering the possibilities of your API towards the clients. 
 
-****Construction***
+***Construction***
 ```javascript
 	"links": [
 	 {
