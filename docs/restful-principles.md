@@ -123,8 +123,20 @@ To send the total entries back to the user use the custom HTTP header: `X-Total-
 ## 8. Return a resource representation in PATCH and POST
 
 ## 9. Use HATEOAS
-**H**ypermedia **a**s **t**he **E**ngine **o**f **A**pplication **S**tate is a principle that hypertext links should be used to create a better 
-navigation through the API.
+**H**ypermedia **a**s **t**he **E**ngine **o**f **A**pplication **S**tate is a principle that hypertext links should be used to create a better navigation through the API. Level 3 of [Richardson Maturity Model], the highest level, uses HATEOAS to deal with discovering the possibilities of your API towards the clients. 
+
+****Construction***
+```javascript
+	"links": [
+	 {
+	 "rel": "<well-known linkrefs or URI>",
+	 "href": "<absolute or relative path>",
+	 "doc": "<human-readable description of the link>"
+	 }
+	]
+```
+
+***Example***
 ```javascript
 {
   "id": 711,
@@ -139,12 +151,62 @@ navigation through the API.
      {
      "rel": "self",
      "href": "/api/v1/drivers/23"
-    }
+     }
    ]
   }
  ]
 }
 ```
+There are specific relation types that are predefined. If you use one of these relation-types inside your own API, you MUST make sure they behave as expected, otherwise this might confuse your clients. See below for a link to these relation-types. -
+
+- [IANA - Link relation](http://www.iana.org/assignments/link-relations/link-relations.xml)
+- [HTML5 Specification - Links](http://www.w3.org/TR/html5/links.html)
+- [RFC 5988: Web Linking](http://tools.ietf.org/html/rfc5988)
+
+If you use non-standard relation types, they are required to be URIs. You can help clients understand what your custom link relation types do by making the URI de-referenceable, and place the documentation for that relation at that URI.
+
+Note that there are no information in the links related to which HTTP verb to use (GET, POST, PATCH, DELETE, etc). This is something client needs to explore or something that should be documented in the API documentation. To provide real value, links should include which state changes are possible given current state, see the Example from [Richardson Maturity Model] below. However, this braks our principle #1 to use nouns and not verbs in the URLs.
+
+```json
+{
+  "appointment": {
+    "slot": {
+      "id": "1234",
+      "doctor": "mjones",
+      "start": "1400",
+      "end": "1450"
+    },
+    "patient": { "id": "jsmith" },
+    "links": [
+      {
+        "rel": "/linkrels/appointment/cancel",
+        "href": "/slots/1234/appointment"
+      },
+      {
+        "rel": "/linkrels/appointment/addTest",
+        "href": "/slots/1234/appointment/tests"
+      },
+      {
+        "rel": "self",
+        "href": "/slots/1234/appointment"
+      },
+      {
+        "rel": "/linkrels/appointment/changeTime",
+        "href": "/doctors/mjones/slots?date=20100104@status=open"
+      },
+      {
+        "rel": "/linkrels/appointment/updateContactInfo",
+        "href": "/patients/jsmith/contactInfo"
+      },
+      {
+        "rel": "/linkrels/help",
+        "href": "/help/appointment"
+      }
+    ]
+  }
+}
+```
+
 ## 10. Handle Errors with HTTP status codes
 ### Use HTTP status codes
 ### Use error payloads
@@ -178,7 +240,7 @@ have mid-word capitalization):
 ## 15. Authentication
 A RESTful API should be stateless. This means that request authentication should not depend on cookies or sessions. Instead, each request should come with some sort authentication credentials.
 
-3 authentication mechanisms can be considered:
+3 authentication mechanisms can be considered (see also [Basics about REST Authentication](http://restcookbook.com/Basics/loggingin/):
 
 1. Use `HTTP Basic Auth` and SSL to pass randomly generated access token delivered in the user name field of the HTTP Basic Auth. However, this token-over-basic-auth method of authentication is only acceptable in cases where it's practical to have the user copy a token from an administration interface to the API consumer environment. In cases where this isn't possible, OAuth 2 should be used to provide secure token transfer to a third party. See example on [Strip API](https://stripe.com/docs/api#authentication) and [Github API](https://developer.github.com/v3/#authentication).
 2. Use [OAuth 2](http://oauth.net/2/) to pass the bearer tokens by sending token in the header
@@ -212,6 +274,8 @@ For `PATCH` requests use a conditional request such that the request will fail i
 * [Github API v3](https://developer.github.com/v3/)
 * [Stripe API](https://stripe.com/docs/api#authentication)
 * [Twitter's API](https://dev.twitter.com/rest/public)
+* [Martin Fowler: Richardson Maturity Model][Richardson Maturity Model]
 
 [nodejs-microservice-poc]: https://github.com/ismarslomic/nodejs-microservice-poc
 [restify-mongoose]: https://github.com/ismarslomic/restify-mongoose
+[Richardson Maturity Model]: http://martinfowler.com/articles/richardsonMaturityModel.html
