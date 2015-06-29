@@ -126,7 +126,7 @@ To send the total entries back to the user use the custom HTTP header: `X-Total-
 **H**ypermedia **a**s **t**he **E**ngine **o**f **A**pplication **S**tate is a principle that hypertext links should be used to create a better navigation through the API. Level 3 of [Richardson Maturity Model], the highest level, uses HATEOAS to deal with discovering the possibilities of your API towards the clients. 
 
 ***Construction***
-```javascript
+```json
 	"links": [
 	 {
 	 "rel": "<well-known linkrefs or URI>",
@@ -137,7 +137,7 @@ To send the total entries back to the user use the custom HTTP header: `X-Total-
 ```
 
 ***Example***
-```javascript
+```json
 {
   "id": 711,
   "manufacturer": "bmw",
@@ -193,14 +193,6 @@ Note that there are no information in the links related to which HTTP verb to us
       {
         "rel": "/linkrels/appointment/changeTime",
         "href": "/doctors/mjones/slots?date=20100104@status=open"
-      },
-      {
-        "rel": "/linkrels/appointment/updateContactInfo",
-        "href": "/patients/jsmith/contactInfo"
-      },
-      {
-        "rel": "/linkrels/help",
-        "href": "/help/appointment"
       }
     ]
   }
