@@ -40,7 +40,7 @@
     "gulp-istanbul": "^0.10.0",
     "gulp-jscs": "^1.6.0",
     "gulp-jsdoc": "^0.1.4",
-    "gulp-jshint": "^1.11.0",
+    "gulp-jshint": "^1.11.1",
     "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-mocha": "^2.1.2",
     "gulp-nodemon": "^2.0.3",
@@ -51,7 +51,8 @@
     "map-stream": "0.1.0",
     "minimist": "^1.1.1",
     "require-dir": "^0.3.0",
-    "should": "^7.0.1"
+    "should": "^7.0.1",
+    "supertest": "^1.0.1"
   },
   "scripts": {
     "docs": "gulp docs",
