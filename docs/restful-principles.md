@@ -1,5 +1,7 @@
 # RESTful services principles#
-Following principles are based on the references such as [Github API](https://developer.github.com/v3), [Stripe API](https://stripe.com/docs/api#authentication) and [Twitter's API](https://dev.twitter.com/rest/public) in addition to different blogs describing the best practices. See references at bottom of this list.
+Following principles are based on the best practice references such as [Github API](https://developer.github.com/v3), [Stripe API](https://stripe.com/docs/api#authentication) and [Twitter's API](https://dev.twitter.com/rest/public) in addition to different blogs describing the best practices. See references at bottom of this list.
+
+We are aiming at minimum the Level 2 in [Richrdson Maturity Model](http://martinfowler.com/articles/images/richardsonMaturityModel/overview.png) and will also explore the Hypermedia support in Nodejs and supporting libraries if time.
 
 ## Principles
 :white_circle: Implementation in progress / not verified yet
