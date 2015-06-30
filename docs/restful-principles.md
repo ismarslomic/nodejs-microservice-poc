@@ -38,11 +38,11 @@ Following principles are based on the references such as [Github API](https://de
 ## 1. Use nouns but not verbs
 | HTTP verb |          Route         | Description                       | JS Function | [Idempotent](http://tools.ietf.org/html/rfc7231#section-4.2.2)                      |[Safe](http://tools.ietf.org/html/rfc7231#section-4.2.1) |
 |-----------|:----------------------:|-----------------------------------|-------------|-----------------------------------| -----------|
-| GET       |   `/api/v1/articles`   | Retrieves collection of resources | `query`     | YES                               | YES|
-| GET       | `/api/v1/articles/:id` | Retrieves single resources        | `detail`    | YES                               | YES|
-| POST      |   `/api/v1/articles`   | Creates new resource              | `insert`    | NO (sol.:use unique transaction key) | NO|
-| DELETE    | `/api/v1/articles/:id` | Deletes existing resource         | `remove`    | YES                               | NO|
-| PATCH     | `/api/v1/articles/:id` | Updates existing resource         | `update`    | NO (sol.:use conditional req handler)                               | NO|
+| [GET](http://tools.ietf.org/html/rfc7231#page-24)       |   `/api/v1/articles`   | Retrieves collection of resources | `query`     | YES                               | YES|
+| [GET](http://tools.ietf.org/html/rfc7231#page-24)       | `/api/v1/articles/:id` | Retrieves single resources        | `detail`    | YES                               | YES|
+| [POST](http://tools.ietf.org/html/rfc7231#page-25)      |   `/api/v1/articles`   | Creates new resource              | `insert`    | NO (sol.:use unique transaction key) | NO|
+| [DELETE](http://tools.ietf.org/html/rfc7231#page-29)    | `/api/v1/articles/:id` | Deletes existing resource         | `remove`    | YES                               | NO|
+| [PATCH](http://tools.ietf.org/html/rfc5789)     | `/api/v1/articles/:id` | Updates existing resource         | `update`    | NO (sol.:use conditional req handler)                               | NO|
 
 ## 2. Use plural nouns
 Do not mix up singular and plural nouns. Keep it simple and use only plural nouns for all resources.
