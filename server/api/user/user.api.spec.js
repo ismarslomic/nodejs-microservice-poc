@@ -42,7 +42,7 @@ describe('User REST API services', function () {
 				.expect(200)
 				.expect(function (res) {
 					res.body.should.have.lengthOf(3);
-					res.headers.should.have.property("x-total-count");
+					res.headers.should.have.property('x-total-count');
 					res.headers['x-total-count'].should.be.exactly('3');
 				})
 				.end(done);
@@ -88,7 +88,7 @@ describe('User REST API services', function () {
 				.expect('Content-Type', /json/)
 				.expect(201)
 				.expect(function (res) {
-					res.headers.should.have.property("location");
+					res.headers.should.have.property('location');
 					res.headers.location.should.be.equal(baseUrl + '/' + res.body._id);
 					res.body.should.have.property('email');
 					res.body.should.have.property('password');
@@ -119,7 +119,7 @@ describe('User REST API services', function () {
 						.expect('Content-Type', /json/)
 						.expect(200)
 						.expect(function (res) {
-							res.headers.should.have.property("location");
+							res.headers.should.have.property('location');
 							res.headers.location.should.be.equal(baseUrl + '/' + res.body._id);
 							res.body.email.should.equal('martin-new@example.com');
 							res.body.password.should.equal('MartinsSecretPassword');

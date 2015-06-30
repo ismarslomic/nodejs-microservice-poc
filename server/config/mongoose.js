@@ -63,11 +63,6 @@ mongoose.connection.once('open', function connectionOpen() {
 	}
 });
 
-mongoose.connection.on('disconnected', function () {
-	//logger.error('MongoDB got disconnected! Reconnecting..');
-	//mongoose.connect(config.mongo.uri, config.mongo.options);
-});
-
 mongoose.connection.on('reconnected', function () {
 	logger.info('MongoDB reconnected!');
 });
