@@ -20,7 +20,7 @@ prettyStdOut.pipe(process.stdout);
 var logger = bunyan.createLogger({
 	name: 'server',
 	streams: [{
-		level: 'debug',
+		level: 'error',
 		type: 'raw',
 		stream: prettyStdOut
 	}]
@@ -47,8 +47,10 @@ server.on('after', restify.auditLogger({
 	log: logger
 }));
 
-require('./routes')(server);
+require('./api')(server);
 
-server.listen(8080, function () {
-	logger.info('%s listening at %s', server.name, server.url);
+server.listen(8080, 'localhost', function () {
+	logger.info('%s listening at %s in %s mode', server.name, server.url, process.env.NODE_ENV);
 });
+
+module.exports = server;

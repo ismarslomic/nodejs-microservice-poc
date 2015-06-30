@@ -1,19 +1,30 @@
 'use strict';
-var restify = require('restify');
 var restifyMongoose = require('restify-mongoose');
 var Article = require('./article.model');
 
-module.exports = function (server) {
+module.exports = ArticleAPI;
+
+var url;
+
+function ArticleAPI(server, baseUrl) {
+	this.url = server.url + baseUrl + '/articles';
+
 	var options = {
 		pageSize: 5,
-		baseUrl: 'http://localhost:8080'
+		baseUrl: server.url
 	};
-	var articles = restifyMongoose(Article.model, options);
-	var v1RoutePath = '/api/v1/articles';
 
-	server.get({path: v1RoutePath, version: '1.0.0'}, articles.query());
-	server.get({path: v1RoutePath + '/:id', version: '1.0.0'}, articles.detail());
-	server.post({path: v1RoutePath, version: '1.0.0'}, articles.insert());
-	server.patch({path: v1RoutePath + '/:id', version: '1.0.0'}, articles.update());
-	server.del({path: v1RoutePath + '/:id', version: '1.0.0'}, articles.remove());
-};
+	var articles = restifyMongoose(Article.model, options);
+
+	server.get({path: this.url, version: '1.0.0'}, articles.query());
+	server.get({path: this.url + '/:id', version: '1.0.0'}, articles.detail());
+	server.post({path: this.url, version: '1.0.0'}, articles.insert());
+	server.patch({path: this.url + '/:id', version: '1.0.0'}, articles.update());
+	server.del({path: this.url + '/:id', version: '1.0.0'}, articles.remove());
+}
+
+ArticleAPI.prototype = {
+	constructor: ArticleAPI,
+	url: this.url
+}
+

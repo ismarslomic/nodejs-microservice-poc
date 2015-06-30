@@ -54,7 +54,7 @@ mongoose.connection.on('error', function connectionError(err) {
 
 // register the connection handler once only
 mongoose.connection.once('open', function connectionOpen() {
-	logger.info('Database connection open');
+	logger.info('Database connection open at %s', config.mongo.uri);
 
 	// Populate DB with sample data if the seedDB is set to true for this env
 	if (config.seedDB) {
@@ -64,8 +64,8 @@ mongoose.connection.once('open', function connectionOpen() {
 });
 
 mongoose.connection.on('disconnected', function () {
-	logger.error('MongoDB got disconnected! Reconnecting..');
-	mongoose.connect(config.mongo.uri, config.mongo.options);
+	//logger.error('MongoDB got disconnected! Reconnecting..');
+	//mongoose.connect(config.mongo.uri, config.mongo.options);
 });
 
 mongoose.connection.on('reconnected', function () {
