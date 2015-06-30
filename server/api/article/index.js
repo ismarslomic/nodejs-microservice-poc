@@ -25,6 +25,6 @@ function ArticleAPI(server, baseUrl) {
 
 ArticleAPI.prototype = {
 	constructor: ArticleAPI,
-	url: this.url
+	url: url
 }
 

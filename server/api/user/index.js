@@ -25,5 +25,5 @@ function UserAPI(server, baseUrl) {
 
 UserAPI.prototype = {
 	constructor: UserAPI,
-	url: this.url
+	url: url
 }
