@@ -8,6 +8,7 @@ var rootPath = path.normalize(__dirname + '../../');
 var conf = {
 	dirs: {
 		server: 'server',
+		bin: 'bin',
 		build: 'build',
 		docs: 'docs',
 		coverage: 'coverage'

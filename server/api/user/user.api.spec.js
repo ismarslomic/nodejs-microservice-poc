@@ -2,7 +2,8 @@
 require('should');
 
 var request = require('supertest');
-var server = require('../../server');
+var server = require('../../server').server;
+var db = require('../../config/mongoose');
 var User = require('./user.model').model;
 
 var v1RoutePath = '/api/v1/users';
@@ -10,8 +11,10 @@ var baseUrl = server.url + v1RoutePath;
 
 // Clear all users
 function cleanup(done) {
-	User.remove().exec().then(function () {
-		done();
+	db.connect(function(){
+		User.remove().exec().then(function () {
+			done();
+		});
 	});
 }
 
@@ -29,11 +32,18 @@ function populate(done) {
 	)
 }
 
+function closeConnection(done){
+	db.disconnect(function(){
+		done();
+	})
+}
+
+
 describe('User REST API services', function () {
 	describe('query / GET', function () {
 		before(cleanup);
 		before(populate);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should return all users', function (done) {
 			request(server)
@@ -48,9 +58,10 @@ describe('User REST API services', function () {
 				.end(done);
 		});
 	});
+
 	describe('details / GET', function () {
 		before(cleanup);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should select detail user', function (done) {
 			User.create(
@@ -79,7 +90,7 @@ describe('User REST API services', function () {
 
 	describe('insert / POST', function () {
 		before(cleanup);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should create user and return user back with 201', function (done) {
 			request(server)
@@ -103,7 +114,7 @@ describe('User REST API services', function () {
 
 	describe('update / PATCH', function () {
 		before(cleanup);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should partly update existing user and return back full doc', function (done) {
 			User.create(
@@ -133,7 +144,7 @@ describe('User REST API services', function () {
 
 	describe('delete / DEL', function () {
 		before(cleanup);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should delete existing user', function (done) {
 			User.create(
@@ -154,4 +165,5 @@ describe('User REST API services', function () {
 				});
 		});
 	});
+
 });

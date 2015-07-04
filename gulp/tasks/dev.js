@@ -15,7 +15,7 @@ var nodemon = require('gulp-nodemon');
  */
 gulp.task('watch', function () {
 	nodemon({
-		script: path.join(conf.dirs.server, 'server.js'),
+		script: path.join(conf.dirs.bin, 'server.js'),
 		ext: 'js',
 		env: {
 			'NODE_ENV': 'development'

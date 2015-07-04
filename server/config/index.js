@@ -25,9 +25,9 @@ var common = {
 
 	root: path.normalize(__dirname + '/../..'),
 
-	ip: '0.0.0.0',
+	ip: 'localhost',
 
-	port: process.env.PORT || 9001,
+	port: process.env.PORT || 8080,
 
 	// Secret for session, you will want to change this and make it an environment variable
 	secrets: {

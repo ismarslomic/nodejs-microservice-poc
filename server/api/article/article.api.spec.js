@@ -2,16 +2,18 @@
 require('should');
 
 var request = require('supertest');
-var server = require('../../server');
+var server = require('../../server').server;
+var db = require('../../config/mongoose');
 var Article = require('./article.model').model;
-
 var v1RoutePath = '/api/v1/articles';
 var baseUrl = server.url + v1RoutePath;
 
 // Clear all articles
 function cleanup(done) {
-	Article.remove().exec().then(function () {
-		done();
+	db.connect(function () {
+		Article.remove().exec().then(function () {
+			done();
+		});
 	});
 }
 
@@ -38,11 +40,17 @@ function populate(done) {
 	)
 }
 
+function closeConnection(done) {
+	db.disconnect(function () {
+		done();
+	})
+}
+
 describe('Article REST API services', function () {
 	describe('query / GET', function () {
 		before(cleanup);
 		before(populate);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should return all articles', function (done) {
 			request(server)
@@ -59,7 +67,7 @@ describe('Article REST API services', function () {
 	});
 	describe('details / GET', function () {
 		before(cleanup);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should select detail article', function (done) {
 			Article.create(
@@ -93,7 +101,7 @@ describe('Article REST API services', function () {
 
 	describe('insert / POST', function () {
 		before(cleanup);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should create article and return article back with 201', function (done) {
 			request(server)
@@ -126,7 +134,7 @@ describe('Article REST API services', function () {
 
 	describe('update / PATCH', function () {
 		before(cleanup);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should partly update existing article and return back full doc', function (done) {
 			Article.create(
@@ -164,7 +172,7 @@ describe('Article REST API services', function () {
 
 	describe('delete / DEL', function () {
 		before(cleanup);
-		after(cleanup);
+		after(closeConnection);
 
 		it('should delete existing article', function (done) {
 			Article.create(

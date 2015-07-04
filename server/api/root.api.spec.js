@@ -2,11 +2,12 @@
 require('should');
 
 var request = require('supertest');
-var server = require('../server');
+var server = require('../server').server;
 var v1RoutePath = '/api/v1';
 var url = server.url + v1RoutePath;
 
-	describe('Root endpoint REST API services', function () {
+describe('Root endpoint REST API services', function () {
+
 	describe('query / GET', function () {
 		it('should return 200 and all endpoints available', function (done) {
 			request(server)

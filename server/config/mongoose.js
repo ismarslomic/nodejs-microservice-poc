@@ -9,6 +9,7 @@ var mongoose = require('mongoose');
 var config = require('./index');
 // using bunyan logger since restify is supporting it
 var bunyan = require('bunyan');
+var connection;
 
 // pretty printing capabilities
 var PrettyStream = require('bunyan-prettystream');
@@ -26,26 +27,34 @@ var logger = bunyan.createLogger({
 	}]
 });
 
-// connect to mongodb
-var connection = mongoose.connect(config.mongo.uri, config.mongo.options);
+var connect = function (cb) {
+	// connect to mongodb
+	connection = mongoose.connect(config.mongo.uri, config.mongo.options);
 
-/**
- * The initialized Mongoose connection object
- * @type {MongooseConnection}
- */
-module.exports = connection;
+	// reconnect if connection is disconnected or disconnecting
+	// throw any errors that occur while reconnecting
+	if (connection.state === 0 || connection.state === 3) {
+		connection.open(function connectionReconnect(err) {
+			if (err) {
+				logger.error('Error while reinitializing the database connection: %s', err);
+				throw err; // throw error to stop application launch
+			}
+			logger.info('Database Connection reopened');
+			cb();
+		});
+	}
+	cb();
+}
 
-// reconnect if connection is disconnected or disconnecting
-// throw any errors that occur while reconnecting
-if (connection.state === 0 || connection.state === 3) {
-	connection.open(function connectionReconnect(err) {
-		if (err) {
-			logger.error('Error while reinitializing the database connection: %s', err);
-			throw err; // throw error to stop application launch
-		}
-		logger.info('Database Connection reopened');
+var disconnect = function (cb) {
+	mongoose.connection.close(function () {
+		cb();
 	});
 }
+
+module.exports.connect = connect;
+module.exports.disconnect = disconnect;
+
 
 // register global database error handler
 mongoose.connection.on('error', function connectionError(err) {
