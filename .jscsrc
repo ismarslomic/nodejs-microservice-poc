@@ -66,10 +66,6 @@
 	],
 	"validateLineBreaks": "LF",
 	"validateIndentation": "\t",
-	"validateJSDoc": {
-		"checkParamNames": true,
-		"requireParamTypes": true
-	},
 	"requireSpacesInConditionalExpression": {
 		"afterTest": true,
 		"beforeConsequent": true,

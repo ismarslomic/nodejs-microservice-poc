@@ -63,6 +63,5 @@
 	"white": true,
 	"maxerr": 100,
 	"predef": [],
-	"indent": "\t",
 	"quotmark": "single"
 }
