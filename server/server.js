@@ -1,7 +1,22 @@
 'use strict';
 
 // Set default node environment to development
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+var minimist = require('minimist');
+
+// parse optional arguments and set environment variables
+
+// all known options that can be passed by --option
+// and their defaults
+var knownOptions = {
+	string: ['env'],
+	default: {
+		env: process.env.NODE_ENV || 'test'
+	}
+};
+
+var options = minimist(process.argv.slice(2), knownOptions);
+process.env.NODE_ENV = options.env;
 
 var config = require('./config/index');
 var db = require('./config/mongoose');
@@ -14,7 +29,7 @@ prettyStdOut.pipe(process.stdout);
 var logger = bunyan.createLogger({
 	name: 'server',
 	streams: [{
-		level: 'error',
+		level: 'info',
 		type: 'raw',
 		stream: prettyStdOut
 	}]
