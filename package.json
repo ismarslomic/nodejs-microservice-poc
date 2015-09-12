@@ -27,7 +27,7 @@
     "mongoose": "^4.1.6",
     "q": "1.4.1",
     "restify": "^4.0.2",
-    "restify-mongoose": "git+https://github.com/ismarslomic/restify-mongoose.git"
+    "restify-mongoose": "git+https://github.com/saintedlama/restify-mongoose"
   },
   "devDependencies": {
     "bunyan": "^1.5.1",
