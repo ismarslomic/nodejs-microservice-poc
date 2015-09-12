@@ -40,15 +40,22 @@ var connect = function (cb) {
 				throw err; // throw error to stop application launch
 			}
 			logger.info('Database Connection reopened');
-			cb();
+			if (cb) {
+				cb()
+			}
+
 		});
 	}
-	cb();
+	if (cb) {
+		cb()
+	}
 }
 
 var disconnect = function (cb) {
 	mongoose.connection.close(function () {
-		cb();
+		if (cb) {
+			cb()
+		}
 	});
 }
 
