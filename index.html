@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Index</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Index</h1>
+
+    
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1 id="nodejs-microservice-poc">nodejs-microservice-poc</h1>
+<p><a href="https://github.com/ismarslomic/nodejs-microservice-poc"><img src="http://img.shields.io/github/tag/ismarslomic/nodejs-microservice-poc.svg" alt="GitHub version"></a>
+<a href="https://travis-ci.org/ismarslomic/nodejs-microservice-poc"><img src="https://travis-ci.org/ismarslomic/nodejs-microservice-poc.svg?branch=master" alt="Build Status"></a>
+<a href="https://david-dm.org/ismarslomic/nodejs-microservice-poc"><img src="https://david-dm.org/ismarslomic/nodejs-microservice-poc.svg?theme=shields.io" alt="Dependency Status"></a>
+<a href="https://david-dm.org/ismarslomic/nodejs-microservice-poc#info=devDependencies"><img src="https://david-dm.org/ismarslomic/nodejs-microservice-poc/dev-status.svg" alt="DevDependency Status"></a>
+<a href="http://inch-ci.org/github/ismarslomic/nodejs-microservice-poc"><img src="http://inch-ci.org/github/ismarslomic/nodejs-microservice-poc.svg?branch=master" alt="Inline docs"></a>
+<a href="https://codeclimate.com/github/ismarslomic/nodejs-microservice-poc"><img src="https://codeclimate.com/github/ismarslomic/nodejs-microservice-poc/badges/gpa.svg" alt="Code Climate"></a>
+<a href="https://coveralls.io/r/ismarslomic/nodejs-microservice-poc?branch=master"><img src="https://coveralls.io/repos/ismarslomic/nodejs-microservice-poc/badge.svg?branch=master" alt="Coverage Status"></a></p>
+<p>Microservice PoC running at Nodejs inside Docker</p>
+<ul>
+<li><a href="https://github.com/ismarslomic/nodejs-microservice-poc">GitHub Repository and code</a></li>
+<li><a href="http://ismarslomic.github.io/nodejs-microservice-poc">GitHub Pages</a></li>
+</ul>
+<h2 id="dev-op-tools">Dev op tools</h2>
+<ul>
+<li>Source code coverage with <a href="https://coveralls.io">coveralls</a>. Note this is in addition to Codeclimate code coverage</li>
+<li>Continous Integration (build and test Github projects) with open-source tool <a href="https://travis-ci.org">travis-ci</a></li>
+<li>Version control and issue tracking with <a href="https://github.com">github</a></li>
+<li>Project dependency checker with <a href="https://david-dm.org/">david-dm</a></li>
+<li>Automated code review with and show source code coverage <a href="https://codeclimate.com/">codeclimate</a>. Note that this is in addition to Coveralls coverage</li>
+<li>Javascript documentation notation with <a href="http://usejsdoc.org/">jsdoc</a></li>
+<li>Evaluation of inline code documentation from <a href="http://inch-ci.org/">Inch CI</a></li>
+</ul>
+<h2 id="scaffolding-based-on-yeoman-generator">Scaffolding based on yeoman generator</h2>
+<ul>
+<li><a href="https://github.com/qiu8310/generator-nody">generator-nody</a></li>
+<li><a href="https://github.com/lawls544/generator-restify-mongo">generator-restify-mongo</a></li>
+</ul>
+<h2 id="install-and-setup">Install and setup</h2>
+<h3 id="node-js">Node.js</h3>
+<pre><code class="lang-bash">npm install
+</code></pre>
+<h3 id="connect-to-remote-github-repository-one-time-only-">Connect to remote Github repository (one-time only)</h3>
+<pre><code class="lang-bash">cd nodejs-microservice-poc
+git init
+git add .
+git commit -m “Initial commit with use of scaffolding”
+git remote add origin git@github.com:ismarslomic/nodejs-microservice-poc.git
+git push --set-upstream origin master
+</code></pre>
+<h3 id="setup-travis-one-time-only-">Setup Travis (one time only)</h3>
+<ol>
+<li>Go to <a href="https://travis-ci.org/profile/ismarslomic">Travis account</a></li>
+<li>Press the Sync button</li>
+<li>Switch to ON for the repository</li>
+<li>If Travis has not been configured to make push towards GitHub, then follow 
+<a href="https://gist.github.com/domenic/ec8b0fc8ab45f39403dd">these</a> instructions</li>
+<li>Make new <code>git push</code>to trigger build</li>
+</ol>
+<h3 id="setup-codeclimate-one-time-only-">Setup Codeclimate (one time only)</h3>
+<ol>
+<li><a href="https://codeclimate.com/github/signup">Add Github Repository</a> at codeclimate.com</li>
+<li>Fill out the repository name and press `Import repo from Github</li>
+<li>Follow the <a href="https://codeclimate.com/repos/5579dda1e30ba041b7001840/coverage_setup">JavaScript instructions</a> to 
+connect code quality with test coverage. Remember to add the 
+<a href="https://travis-ci.org/ismarslomic/nodejs-microservice-poc/settings/env_vars">environment variable to Travis</a> and to your 
+local env as well. You can find the repo token in the URL barl of your browser.</li>
+</ol>
+<h3 id="setup-inch-ci-one-time-only-">Setup Inch-CI (one time only)</h3>
+<ol>
+<li>Go to the <a href="http://inch-ci.org/github/ismarslomic/nodejs-microservice-poc">Inch-CI project</a> and press Create button</li>
+</ol>
+<h3 id="setup-david-dm-one-time-only-">Setup David-dm (one time only)</h3>
+<p>No setup is required, david-dm will automatically recognise and run check</p>
+<h3 id="setup-coveralls-one-time-only-">Setup Coveralls (one time only)</h3>
+<ol>
+<li><a href="https://coveralls.io/repos/new">Add new repo</a> by swithing Github repo to ON</li>
+<li>Follow the <strong><em>SET UP COVERALLS</em></strong> steps for adding <code>.coveralls.yml</code> in repository root</li>
+<li>Run the NPM script <code>npm run coveralls</code></li>
+<li>Travis will automatically run this command after each build. See <a href=".travis.yml">.travis.yml</a></li>
+</ol>
+<h2 id="gulp-tasks">Gulp tasks</h2>
+<ul>
+<li><code>gulp test</code> to run <code>lint</code> and <code>istanbul</code></li>
+<li><code>gulp release</code> to bump version number in <code>package.json</code></li>
+<li><code>gulp</code> to <code>test</code> and <code>watch</code></li>
+</ul>
+<h2 id="npm-scripts">NPM scripts</h2>
+<ul>
+<li><code>npm run docs</code> generates HTML documentation in /docs based with help of <code>jsdoc</code> annotations</li>
+<li><code>npm run coveralls</code></li>
+<li><code>npm run test</code> runs mocha test by triggering <code>gulp test</code></li>
+</ul>
+<h2 id="shell-scripts">Shell scripts</h2>
+<ul>
+<li><code>/publish_docs.sh</code> publish documentation placed at <code>/docs</code> to <a href="http://ismarslomic.github.io/nodejs-microservice-poc/">github pages</a> by commiting to branch <code>gh-pages</code></li>
+</ul>
+<h1 id="dependencies">Dependencies</h1>
+<h2 id="devdependencies">devDependencies</h2>
+<ul>
+<li>Mocha Unit Testing with <a href="https://github.com/sindresorhus/gulp-mocha">gulp-mocha</a></li>
+<li>Automagically lint your code with <a href="https://github.com/spenceralger/gulp-jshint">gulp-jshint</a></li>
+<li>Check JavaScript code style with <a href="https://github.com/sindresorhus/gulp-jscs">gulp-jscs</a></li>
+<li>Measuring code coverage with <a href="https://github.com/SBoudrias/gulp-istanbul">gulp-istanbul</a></li>
+<li>Upload LCOV data to <a href="http://coveralls.io">coveralls.io</a> with <a href="https://github.com/cainus/node-coveralls">coveralls</a></li>
+<li>Bump npm versions with <a href="https://github.com/stevelacy/gulp-bump">gulp-bump</a></li>
+</ul>
+<h2 id="dependencies">dependencies</h2>
+<ul>
+<li>Debug your code with <a href="https://github.com/visionmedia/debug">debug</a></li>
+<li>Neat utilities with <a href="http://lodash.com/">lodash</a></li>
+<li>Creating and composing asynchronous promises with <a href="https://github.com/kriskowal/q">q</a></li>
+</ul>
+<h2 id="update-dependencies">Update dependencies</h2>
+<p>Upgrade npm modules to latest version by use of <a href="https://www.npmjs.com/package/npm-check-updates">npm-check-updates</a></p>
+<pre><code class="lang-bash"># Install the npm package globally
+npm install -g npm-check-updates
+
+# Get list of all upgrades
+ncu
+
+# Upgrade all npm modules to latest version and update package.json file
+sudo ncu -u
+</code></pre>
+<h2 id="api">API</h2>
+<p><em>(Coming soon)</em></p>
+<h2 id="contributing">Contributing</h2>
+<p>In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using <a href="http://gulpjs.com/">gulp</a>.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://github.com/tutsplus/nodes-restful-api">nodes-restful-api</a> - RESTful API with MongoDB, Restify, NodeJS</li>
+<li><a href="https://ci.testling.com/">CI Test for Browser</a> - Run your browser tests on every push, demo project <a href="https://github.com/substack/js-traverse">js-traverse</a></li>
+<li><a href="https://github.com/igrigorik/ga-beacon">GA on Github</a> - Google Analytics collector-as-a-service (using GA measurement protocol).</li>
+<li><a href="https://github.com/rwaldron/idiomatic.js">idiomatic.js</a> - Principles of Writing Consistent, Idiomatic JavaScript</li>
+<li><a href="http://usejsdoc.org/index.html">Use jsdoc</a></li>
+<li><a href="http://www.2ality.com/2015/03/babel-on-node.html">Using the ES6 transpiler Babel on Node.js</a></li>
+<li><a href="https://github.com/npm/newww/issues/313">Node Collection</a><ul>
+<li><a href="http://tools.ampersandjs.com/">http://tools.ampersandjs.com/</a></li>
+<li><a href="https://github.com/sindresorhus/awesome-nodejs">https://github.com/sindresorhus/awesome-nodejs</a></li>
+<li><a href="https://www.npmjs.com/package/frontend-npm-goodies">https://www.npmjs.com/package/frontend-npm-goodies</a></li>
+<li><a href="https://github.com/Raynos/http-framework/wiki/Modules#response">https://github.com/Raynos/http-framework/wiki/Modules#response</a></li>
+<li><a href="https://github.com/npm-dom">https://github.com/npm-dom</a></li>
+<li><a href="https://www.npmjs.com/package/mad-science-modules">https://www.npmjs.com/package/mad-science-modules</a></li>
+<li><a href="https://www.npmjs.com/package/npm-collection-language-tools#readme">https://www.npmjs.com/package/npm-collection-language-tools#readme</a></li>
+<li>And more...</li>
+</ul>
+</li>
+</ul>
+<h2 id="license">License</h2>
+<p>Copyright (c) 2015 Ismar Slomic. Licensed under the MIT license.</p>
+</article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="mongoose.html">config:mongoose</a></li><li><a href="module-config.html">config</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Sun Sep 13 2015 19:45:12 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
