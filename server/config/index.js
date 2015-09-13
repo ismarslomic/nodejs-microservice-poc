@@ -27,7 +27,7 @@ var common = {
 
 	ip: 'localhost',
 
-	port: process.env.PORT || 8080,
+	port: process.env.PORT || 3000,
 
 	// Secret for session, you will want to change this and make it an environment variable
 	secrets: {

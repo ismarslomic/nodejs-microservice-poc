@@ -59,7 +59,7 @@ exports.server.start = serverStart;
 
 function serverStart() {
 	db.connect();
-	server.listen(config.port, config.ip, function () {
+	server.listen(config.port, function () {
 		logger.info('%s listening at %s in %s mode', server.name, server.url, process.env.NODE_ENV);
 	});
 }
